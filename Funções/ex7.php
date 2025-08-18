@@ -1,5 +1,4 @@
 <?php
-
 $insiraNota = readline('Insira sua primeira nota > ');
 $insiraOutra = readline('Insira sua outra nota > ');
 

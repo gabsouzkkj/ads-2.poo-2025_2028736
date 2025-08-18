@@ -1,5 +1,4 @@
 <?php
-
 function contarElementos($array) {
     return count($array);
 }

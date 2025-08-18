@@ -1,5 +1,4 @@
 <?php
-
 $insiraNome = readline('Insira seu nome > ');
 
 function saudar($nome) {

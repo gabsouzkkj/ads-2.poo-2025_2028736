@@ -28,18 +28,19 @@ function gerarCupom($itens, $possuiFidelidade) {
     foreach ($itens as $item) {
         $subtotal = calcularSubtotal($item['preco'], $item['quantidade']);
         echo " 1. Produto: {$item['nome']}.\n";
-        echo " 2. Preço Único: R$ " . $item['preco'] . ".\n";
-        echo " 3. Quantidade: {$item['quantidade']}.\n";
-        echo " - Subtotal: R$ " . $subtotal . ".\n\n";
+        echo " 2. Preço Único: R$ " . number_format($item['preco'], 2, ',', '.') . ".\n";
+        echo " 3. Quantidade: " . number_format($item['quantidade'], 2, ',', '.') . ".\n";
+        echo " - Subtotal: R$ " . number_format($subtotal, 2, ',', '.') . ".\n\n";
     }
 
     echo "🧾: Resumo\n";
-    echo " - Total Bruto: R$ " . $totalBruto . ".\n";
-    echo " - Total Final: R$ " . $totalFinal . ".\n";
+    echo " - Total Bruto: R$ " . number_format($totalBruto, 2, ',', '.') . ".\n";
+    echo " - Total Final: R$ " . number_format($totalFinal, 2, ',', '.') . ".\n";
+    
     if ($possuiFidelidade) {
-        echo " - Descontado [10%]: R$ -" . $desconto . ".\n";
+        echo " - Descontado [10%]: R$ -" . number_format($desconto, 2, ',', '.') . ".\n\n";
     } else {
-        echo "- Não houve desconto aplicado!";
+        echo " - Não houve desconto aplicado!\n\n";
     }
 }
 
@@ -104,7 +105,7 @@ while (true) {
         echo "\n❌: Quantidade inválida. Tente novamente!\n";
         continue;
     }
-
+    
     echo "\n✅: {$produtosDisponiveis[$escolha]['nome']} x{$quantidade} adicionado(s)!\n";
 }
 

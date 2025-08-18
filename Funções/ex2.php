@@ -1,5 +1,4 @@
 <?php
-
 $insiraNumero = readline('Insira um número para dobrar > ');
 
 function dobrar($numero) {
