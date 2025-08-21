@@ -3,4 +3,4 @@ Repositório dedicado aos conceitos e aplicações de POO (Programação Orienta
 
 # 🎯 Objetivo
 Organizar e disponibilizar conteúdos relacionados à POO em PHP, incluindo:
-- ✔ Fundamentos teóricos (o básico, funções, array associativos e multidimensionais e etc)
+- ✔ Fundamentos teóricos e prático (o básico, funções, array associativos e multidimensionais e etc)
