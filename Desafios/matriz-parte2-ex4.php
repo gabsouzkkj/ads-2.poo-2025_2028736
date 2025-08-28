@@ -9,4 +9,6 @@ if (in_array($insiraX, $numerosNX)) {
 } else {
     echo 'Número não encontrado!';
 }
-?>
+
+
+
