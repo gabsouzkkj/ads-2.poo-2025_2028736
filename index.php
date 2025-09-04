@@ -70,7 +70,7 @@ $pessoa3->adicionarConta($conta3_pessoa3);
 echo "<h2> BRADESCO </h2>";
 
 echo "Titular: {$pessoa1->nome} ({$pessoa1->getCpf()})<br>";
-echo "Contas de {$pessoa1->nome}: <br>";
+echo "Conta(s) de {$pessoa1->nome}: <br>";
 $contas_pessoa1 = $pessoa1->listarContas();
 foreach ($contas_pessoa1 as $conta) {
     echo "* Número da conta: " . $conta->getNumero() . "<br>";
@@ -79,7 +79,7 @@ foreach ($contas_pessoa1 as $conta) {
 }
 
 echo "Titular: {$pessoa2->nome} ({$pessoa2->getCpf()})<br>";
-echo "Contas de {$pessoa2->nome}: <br>";
+echo "Conta(s) de {$pessoa2->nome}: <br>";
 $contas_pessoa2 = $pessoa2->listarContas();
 foreach ($contas_pessoa2 as $conta) {
     echo "* Número da conta: " . $conta->getNumero() . "<br>";
@@ -88,7 +88,7 @@ foreach ($contas_pessoa2 as $conta) {
 }
 
 echo "Titular: {$pessoa3->nome} ({$pessoa3->getCpf()})<br>";
-echo "Contas de {$pessoa3->nome}: <br>";
+echo "Conta(s) de {$pessoa3->nome}: <br>";
 $contas_pessoa3 = $pessoa3->listarContas();
 foreach ($contas_pessoa3 as $conta) {
     echo "* Número da conta: " . $conta->getNumero() . "<br>";
