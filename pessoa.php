@@ -3,8 +3,8 @@
 class Pessoa 
 {
     public string $nome;
-    public string $cpf;
-    public array $contas;
+    private string $cpf;
+    private array $contas;
 
     public function __construct(string $nome, string $cpf)
     {
@@ -23,26 +23,11 @@ class Pessoa
         }
     }
 
-    public function listarConta(): array {
+    public function listarContas(): array {
         return $this->contas;
     }
+
+    public function getCpf(): string {
+        return $this->cpf;
+    }
 }
-
-// $usuario1 = new Pessoa (
-//     "Gabriel Philippe",
-//     "000.000.000-00"
-// );
-
-// echo $usuario1->hello();
-
-// $usuario1->adicionarConta("12345-6");
-// $contas = $usuario1->listarConta();
-
-// if (!empty($contas)) {
-//     echo "Contas do clientes {$usuario1->nome}";
-//     for ($i = 0; $i < count($contas); $i++) {
-//         echo $contas[$i] . "<br>";
-//     }
-// } else {
-//     echo "Usuário não possui contas cadastradas";
-// }

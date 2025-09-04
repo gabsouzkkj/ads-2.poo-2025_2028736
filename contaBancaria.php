@@ -16,7 +16,7 @@ class ContaBancaria {
             return false;
         } else {
             $novoSaldo = $this->saldo + $valor;
-            $this->saldo = round($novoSaldo, 2); # arredondando em duas casas
+            $this->saldo = round($novoSaldo, 2);
             return true;
         }
     } 
