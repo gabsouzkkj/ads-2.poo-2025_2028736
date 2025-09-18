@@ -6,11 +6,11 @@ class Pessoa
     private string $cpf;
     private array $contas;
 
-    public function __construct(string $nome, string $cpf)
+    public function __construct(string $nome, string $cpf) 
     {
         $this->nome = $nome;
         $this->cpf = $cpf;
-        $this->contas = []; # representa array vazia (cria uma nova array do zero)
+        $this->contas = []; # representa array vazia (cria uma nova array do ze0ro)
     }
 
     public function adicionarConta(ContaBancaria $numeroConta): bool 
