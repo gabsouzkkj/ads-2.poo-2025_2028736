@@ -17,16 +17,13 @@ class Conta
         $this->saldo = 0.0;
     }
 
-    public function depositar(float $valor): bool 
-    {
-        if ($valor <= 0) {
-            return false;
-        } else {
-            $novoSaldo = $this->saldo + $valor;
-            $this->saldo = round($novoSaldo, 2);
+    public function depositar(float $valor): bool {
+        if ($valor > 0) {
+            $this->saldo += $valor;
             return true;
         }
-    } 
+        return false;
+    }
 
     public function sacar(float $valor): bool
     {
@@ -37,39 +34,37 @@ class Conta
         return false;
     }
 
-    public function transferir(float $valor, Conta $contaDestino): bool 
+    public function transferir(float $valor, Conta $contaDestino): bool
     {
         if ($this->sacar($valor)) {
-            if ($contaDestino->depositar($valor)) {
-                return true;
-            } else {
-                $this->depositar($valor);
-                echo "Erro na transferência: Falha ao depositar. Saldo revertido.\n";
-                return false;
-            }
-        } else {
-            echo "Erro na transferência: Falha ao sacar da conta de origem.\n";
-            return false;
+            return $contaDestino->depositar($valor);
         }
+        return false;
     }
 
-    public function exibirDados() {
-        echo "INFORMAÇÕES DA CONTA:";
-
-        echo "<br><br>Títular: $this->titular";
-        echo "<br>Número da conta: $this->numero<br>";
-        echo "Saldo: $this->saldo<br><br>";
+    public function getDadosConta(): string
+    {
+        return "Conta: {$this->numero} | Titular: {$this->titular} | Saldo: R$ " . number_format($this->saldo, 2, ',', '.') . "<br>";
     }
 }
 
-$conta = new Conta ('0000-000', 'Gabriel Philippe', 8200.00);
-$conta2 = new Conta ('0000-001', 'Caroline Moreno', 1200.00);
+$conta = new Conta ('0000-000', 'Gabriel Philippe');
+$conta2 = new Conta ('0000-001', 'Caroline Moreno');
 
-$conta->depositar(120.00);
-$conta2->depositar(620.00);
+$conta->saldo = 1000.00;
+$conta2->saldo = 100.00;
 
-$conta->sacar(430.00);
-$conta2->sacar(230.00);
+echo $conta->getDadosConta();
+echo $conta2->getDadosConta();
 
-echo $conta->exibirDados();
-echo $conta2->exibirDados();
+$transferir = 100.00;
+
+if ($conta->transferir($transferir, $conta2)) {
+    echo "<br>[$conta->numero] realizou uma transferência de R$ " . $transferir .  " bem-sucedida para a conta [$conta2->numero]. <br>";
+} else {
+    echo "A Transferência de R$ 100,00 FALHOU.\n";
+}
+echo "Saldo da conta [$conta->numero] após a transferência é de: R$ " . $conta->saldo . ".<br><br>";
+
+echo $conta->getDadosConta();
+echo $conta2->getDadosConta();

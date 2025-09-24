@@ -24,7 +24,7 @@ class Livro
         }
 
         $progresso = number_format(($this->paginasLidas / $this->paginas) * 100, 2, ',', '.');
-        return "Livro: {$this->titulo} - Páginas lidas: {$this->paginasLidas} - Progresso: $progresso%<br>";
+        return "Livro: {$this->titulo} | Páginas: {$this->paginas} | Progresso: $progresso%<br>";
     }
 }
 
@@ -33,7 +33,7 @@ $livro->paginasLidas = 300;
 $livro2 = new Livro("Harry Potter", 800);
 $livro2->paginasLidas = 400;
 $livro3 = new Livro("O Hobbit", 600);
-$livro3->paginasLidas = 600;
+$livro3->paginasLidas = 601;
 
 echo $livro->verificarProgresso();
 echo $livro2->verificarProgresso();

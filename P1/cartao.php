@@ -36,9 +36,6 @@ class Cartao
 
     public function exibirDados() 
     {
-        $faturaFormatada = number_format($this->fatura, 2, ',', '.');
-        $limiteFormatado = number_format($this->limite, 2, ',', '.');
-
         echo "INFORMAÇÕES DO CARTÃO<br><br>";
         echo "Banco: {$this->banco}<br>";
         echo "Bandeira: {$this->bandeira}<br><br>";
