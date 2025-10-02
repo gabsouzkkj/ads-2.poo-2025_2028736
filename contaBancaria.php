@@ -1,52 +1,100 @@
 <?php
 
-class ContaBancaria {
+class ContaBancaria
+{
+    private string $titular;
+    private string $cpf;
+    private string $agencia;
     private string $numero;
-    private float $saldo;
-    private Pessoa $titular;
+    private float $saldo = 0;
 
-    public function __construct(string $numeroConta, float $saldoInicial, Pessoa $titular) {
-        $this->numero = $numeroConta;
-        $this->saldo = $saldoInicial;
+    public function __construct(string $titular, string $cpf, string $agencia, string $numero)
+    {
         $this->titular = $titular;
+        $this->setCpf($cpf);
+        $this->agencia = $agencia;
+        $this->numero = $numero;
     }
 
-    public function depositar(float $valor): bool {
-        if ($valor <= 0) {
-            return false;
-        } else {
-            $novoSaldo = $this->saldo + $valor;
-            $this->saldo = round($novoSaldo, 2);
-            return true;
-        }
-    } 
+    // getters e setters
+    // gettters -> get -> saída/retorno das informações
+    // setters -> set -> entrada e validação das informações
+    // para cada atributo preciso de um get e um set
 
-    public function sacar(float $valor): bool {
-        if ($valor <= 0) {
-            echo "Valor informado inválido!<br>";
-            return false;
-        }
+    // setCpf e getCpf estão encapsulando o comportamento de leitura e modifição
+    // do CPF da classe
+    // podemos chamar de interface de acesso e validação
+    public function setCpf(string $cpf): bool
+    {
+        if (!$this->validaCpf($cpf)) {
+            return false; 
+        } 
 
-        if ($valor > $this->saldo) {
-            echo "Saldo insuficiente!<br>";
-            return false;
-        }
-
-        $novoSaldo = $this->saldo - $valor;
-        $this->saldo = round($novoSaldo, 2);
+        $this->cpf = $cpf;
         return true;
     }
 
-    # {getters e setters}
-    public function getSaldo(): float {
-        return $this->saldo;
+    public function getCpf(): string 
+    {
+        return $this->cpf;
     }
 
-    public function getNumero(): string {
-        return $this->numero;
+    public function validaCpf($cpf): bool
+    {
+        // validação com regex - expressão regular
+        if (preg_match('/\D/', $cpf)) {
+            return false;
+        }
+
+        if (strlen($cpf) != 11) {
+            return false;
+        } 
+
+        return true;
     }
 
-    public function getTitular(): Pessoa {
-        return $this->titular;
+    public function exibirSaldo()
+    {
+        echo "O saldo da conta {$this->numero} - {$this->agencia}, {$this->titular} é {$this->saldo}<br>";
     }
+
+    public function saque(float $valor)
+    {
+        if ($valor <= 0) {
+            return false;
+        } 
+
+        if ($valor > $this->saldo) {
+            return false;
+        }
+
+        $this->saldo -= $valor;
+        return true;
+    }
+
+    public function deposito(float $valor)
+    {
+        if ($valor <= 0) {
+            return false;
+        } 
+
+        $this->saldo += $valor;
+        return true;
+    }
+}
+
+try {
+    $conta01 = new ContaBancaria("João", "123456789111", "25", "0001");
+
+    $conta01->exibirSaldo();
+    $conta01->deposito(10);
+    $conta01->exibirSaldo();
+
+    $conta01->deposito(200);
+    $conta01->exibirSaldo();
+
+    $conta01->saque(18);
+    $conta01->exibirSaldo();
+} catch (InvalidArgumentException $e) {
+    echo $e->getMessage();
 }
