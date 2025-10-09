@@ -24,6 +24,8 @@ class ContaBancaria
     // setCpf e getCpf estão encapsulando o comportamento de leitura e modifição
     // do CPF da classe
     // podemos chamar de interface de acesso e validação
+    
+
     public function setCpf(string $cpf): bool
     {
         if (!$this->validaCpf($cpf)) {
@@ -50,6 +52,16 @@ class ContaBancaria
             return false;
         } 
 
+        return true;
+    }
+
+    public function getTitular(): string {
+        return $this->titular;
+    }
+
+    public function setTitular(): string {
+
+        $this->titular = $titular;
         return true;
     }
 
