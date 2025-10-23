@@ -28,7 +28,7 @@ class Pedido
     }
 
     # Setters e Métodos
-    private function setNumeroPedido(string $numeroPedido): void
+    public function setNumeroPedido(string $numeroPedido): void
     {
         $numeroPedido = trim($numeroPedido);
         if (empty($numeroPedido)) {
@@ -87,7 +87,7 @@ class Pedido
         return $resumo;
     }
 
-    private function recalcularValorTotal(): void
+    public function recalcularValorTotal(): void
     {
         $total = 0.0;
         foreach ($this->itens as $item) {
