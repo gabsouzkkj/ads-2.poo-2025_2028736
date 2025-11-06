@@ -12,13 +12,13 @@ class Veiculo
         $this->setMarca($marca);
         $this->setModelo($modelo);
         $this->setAno($ano);
-        $this->setVelocidadeAtual($velocidadeAtual);
     }
 
     public function getDados() {
-        echo "Marca: {$this->getMarca()} | Modelo: {$this->getModelo()} | Ano: {$this->getAno()}<br>\n";
+        echo "Marca: {$this->getMarca()} | Modelo: {$this->getModelo()} | Ano: {$this->getAno()}";
     }
 
+    # Getters e Setters
     # ========
     # Marca
     public function getMarca()
@@ -70,14 +70,20 @@ class Veiculo
     }
 
 
+    # Ações
     # ===========
     # Acelerar
     public function acelerar(float $quantidade): void {
         if ($quantidade > 0) {
             $this->velocidadeAtual += $quantidade;
-            echo "Acelerando.. Velocidade atual: " . number_format($this->velocidadeAtual, 1) . "Km/h<br>";
+
+            if ($this->velocidadeAtual < 0) {
+                $this->velocidadeAtual = 0.0;
+            }
+            
+            echo "\n<br>- Acelerando.. Velocidade atual: " . number_format($this->velocidadeAtual, 1) . "Km/h<br>";
         } else {
-             echo "A quantidade para acelerar deve ser positiva!<br>";
+             echo "\n<br>- A quantidade para acelerar deve ser positiva!<br>";
         }
     }
 
@@ -92,9 +98,9 @@ class Veiculo
                 $this->velocidadeAtual = 0.0;
             }
             
-            echo "<br>\nFreando.. Velocidade atual: " . number_format($this->velocidadeAtual, 1) . "Km/h<br>\n\n";
+            echo "\n<br>- Freando.. Velocidade atual: " . number_format($this->velocidadeAtual, 1) . "Km/h<br>\n\n";
         } else {
-            echo "<br>\nA quantidade para acelerar deve ser positiva!<br>\n\n";
+            echo "\n<br>- A quantidade para acelerar deve ser positiva!<br>\n\n";
         }
     }
 }

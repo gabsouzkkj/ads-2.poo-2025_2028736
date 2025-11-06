@@ -1,5 +1,7 @@
 <?php
 
+require_once 'Veiculo.php';
+
 class Carro extends Veiculo
 {
     private int $portas;
@@ -13,6 +15,7 @@ class Carro extends Veiculo
     }
 
 
+    # Ações
     # =========
     # Portas
     public function getPortas()
@@ -26,13 +29,13 @@ class Carro extends Veiculo
     public function abrirPortas(int $numeroDaPorta): void {
         if ($numeroDaPorta > 0 && $numeroDaPorta <= $this->portas) {
             
-            if ($this->getVelocidadeAtual() = 0.0) {
-                echo "A porta {$numeroDaPorta} foi aberta!<br><br>\n\n";
+            if ($this->getVelocidadeAtual() == 0.0) {
+                echo "\n<br>- A porta {$numeroDaPorta} foi aberta!<br><br>\n\n";
             } else {
-                 echo "Não é possível abrir a porta em movimento. Velocidade: {$this->getVelocidadeAtual()} km/h.<br><br>\n\n";
+                 echo "\n<br>- Não é possível abrir a porta em movimento. Velocidade atual: {$this->getVelocidadeAtual()} km/h!<br><br>\n\n";
             }
         } else {
-             echo "Erro: A porta número {$numeroDaPorta} não existe neste carro de {$this->portas} portas.<br>\n";
+             echo "\n<br>- A porta número {$numeroDaPorta} não existe neste carro de {$this->portas} portas!<br>\n";
         }
     }
 }
